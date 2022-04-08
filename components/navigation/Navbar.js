@@ -41,7 +41,7 @@ const Navbar = () => {
       <NavInnerWrapper>
         <NavLogo>
           <Image src={pokeBallImage} alt="pokepedia" width={30} height={30} />
-          <NavLogoText>Pokepedia</NavLogoText>
+          <NavLogoText>Poképedia</NavLogoText>
         </NavLogo>
       </NavInnerWrapper>
     </NavWrapper>
