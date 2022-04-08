@@ -11,12 +11,13 @@ const Wrapper = styled.div`
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
+  cursor: pointer;
 `;
 
-const PokemonCard = ({ id, image, name }) => {
+const PokemonCard = ({ id, image, name, ...rest }) => {
   return (
     <Link passHref href={`/pokemon/${id}`}>
-      <Wrapper>
+      <Wrapper {...rest}>
         <Image src={image} alt={name} width={100} height={100} />
         <h2>{name}</h2>
         <h3>{pokemonNumber(id)}</h3>

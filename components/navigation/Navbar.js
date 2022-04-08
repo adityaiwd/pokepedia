@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "@emotion/styled";
 import pokeBallImage from "../../public/pokeball-image.png";
 
@@ -39,10 +40,12 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <NavInnerWrapper>
-        <NavLogo>
-          <Image src={pokeBallImage} alt="pokepedia" width={30} height={30} />
-          <NavLogoText>Poképedia</NavLogoText>
-        </NavLogo>
+        <Link passHref href="/">
+          <NavLogo>
+            <Image src={pokeBallImage} alt="pokepedia" width={30} height={30} />
+            <NavLogoText>Poképedia</NavLogoText>
+          </NavLogo>
+        </Link>
       </NavInnerWrapper>
     </NavWrapper>
   );
