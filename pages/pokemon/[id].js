@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GET_POKEMON_DETAIL } from "../../graphql/queries";
 import client from "../../graphql/client";
 import Image from "next/image";
@@ -6,7 +7,8 @@ import styled from "@emotion/styled";
 import { Title, Subtitle } from "../../components/global/Global";
 import pokemonNumber from "../../utils/pokemon-number";
 import Button from "../../components/global/Button";
-import TypesAndMoves from "../../components/pokemon-detail/TypesAndMoves";
+import Types from "../../components/pokemon-detail/Types";
+import Moves from "../../components/pokemon-detail/Moves";
 import capitalizeFirstLetter from "../../utils/capitalize-first-letter";
 
 const BannerWrapper = styled.div`
@@ -21,6 +23,10 @@ const InfoWrapper = styled.div`
 `;
 
 export default function PokemonDetail({ pokemon }) {
+  const [toggleMoves, setToggleMoves] = useState(false);
+  const showMoves = (toggle) => {
+    return toggle ? pokemon.moves : pokemon.moves.slice(0,15)
+  }
   return (
     <div>
       <Head>
@@ -40,9 +46,10 @@ export default function PokemonDetail({ pokemon }) {
             {pokemonNumber(pokemon.id.toString())}
           </Subtitle>
           <Title style={{ textTransform: "uppercase" }}>{pokemon.name}</Title>
+          <Types types={pokemon.types}/>
         </InfoWrapper>
       </BannerWrapper>
-      <TypesAndMoves types={pokemon.types} moves={pokemon.moves} />
+      <Moves moves={showMoves(toggleMoves)} showAll={pokemon.moves.length > 15} onClickShowAll={() => setToggleMoves(!toggleMoves)} />
       <Button variant="contained" style={{ marginBottom: "3rem" }}>
         Catch
       </Button>

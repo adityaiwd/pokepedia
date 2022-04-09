@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {FlexWrapper} from "./FlexWrapper";
+import { FlexWrapper } from "./FlexWrapper";
 import { Title } from "../global/Global";
 import typeColor from "../../utils/type-color";
 
@@ -15,16 +15,13 @@ const TypeChip = styled.div`
 
 const Types = ({ types }) => {
   return (
-    <div>
-      <Title style={{ fontSize: "1.6rem" }}>Types</Title>
-      <FlexWrapper>
-        {types.map(({type}) => (
-          <TypeChip key={type.name} type={type.name}>
-            {type.name}
-          </TypeChip>
-        ))}
-      </FlexWrapper>
-    </div>
+    <FlexWrapper>
+      {types.map(({ type }) => (
+        <TypeChip key={type.name} type={type.name}>
+          {type.name}
+        </TypeChip>
+      ))}
+    </FlexWrapper>
   );
 };
 
