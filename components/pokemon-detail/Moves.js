@@ -4,7 +4,6 @@ import {FlexWrapper} from "./FlexWrapper";
 
 const MoveChip = styled.div`
   padding: 0.5rem;
-  margin-right: 0.5rem;
   border-radius: 0.5rem;
   background-color: #eee;
   color: #000;
@@ -15,11 +14,11 @@ const MoveChip = styled.div`
 
 const Moves = ({moves}) => {
   return (
-    <div>
+    <div style={{padding:'2rem 0'}}>
       <Title style={{ fontSize: "1.6rem" }}>Moves</Title>
       <FlexWrapper>
-        {moves.map((move) => (
-          <MoveChip key={move}>{move}</MoveChip>
+        {moves.map(({move}) => (
+          <MoveChip key={move.name}>{move.name}</MoveChip>
         ))}
       </FlexWrapper>
     </div>

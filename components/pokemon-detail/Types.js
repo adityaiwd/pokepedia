@@ -5,7 +5,6 @@ import typeColor from "../../utils/type-color";
 
 const TypeChip = styled.div`
   padding: 0.5rem;
-  margin-right: 0.5rem;
   border-radius: 0.5rem;
   background-color: ${(props) => typeColor(props.type)};
   color: #fff;
@@ -19,9 +18,9 @@ const Types = ({ types }) => {
     <div>
       <Title style={{ fontSize: "1.6rem" }}>Types</Title>
       <FlexWrapper>
-        {types.map((type) => (
-          <TypeChip key={type} type={type}>
-            {type}
+        {types.map(({type}) => (
+          <TypeChip key={type.name} type={type.name}>
+            {type.name}
           </TypeChip>
         ))}
       </FlexWrapper>

@@ -4,10 +4,10 @@ import Moves from "./Moves";
 
 const TypesAndMoves = ({ types, moves }) => {
   return (
-    <TwoColumnGrid>
-      <Types types={types} />
+    <div>
+      <Types types={types}/>
       <Moves moves={moves} />
-    </TwoColumnGrid>
+    </div>
   );
 };
 

@@ -16,10 +16,10 @@ const Wrapper = styled.div`
 
 const PokemonCard = ({ id, image, name, ...rest }) => {
   return (
-    <Link passHref href={`/pokemon/${id}`}>
+    <Link passHref href={`/pokemon/${name}`}>
       <Wrapper {...rest}>
         <Image src={image} alt={name} width={100} height={100} />
-        <h2>{name}</h2>
+        <h2 style={{textTransform:'uppercase'}}>{name}</h2>
         <h3>{pokemonNumber(id.toString())}</h3>
       </Wrapper>
     </Link>

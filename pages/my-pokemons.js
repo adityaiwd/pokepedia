@@ -1,6 +1,6 @@
 import { Title, TitleWrapper } from "../components/global/Global";
 import PokemonCard from "../components/global/PokemonCard";
-import { PokemonGrid } from "../components/global/PokemonGrid";
+import { TwoColumnGrid } from "../components/global/Global";
 
 export default function MyPokemons() {
   return (
@@ -8,7 +8,7 @@ export default function MyPokemons() {
       <TitleWrapper>
         <Title>My Pokémons</Title>
       </TitleWrapper>
-      <PokemonGrid>
+      <TwoColumnGrid>
         <PokemonCard
           id="1"
           image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
@@ -24,7 +24,7 @@ export default function MyPokemons() {
           image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
           name="Venusaur"
         />
-      </PokemonGrid>
+      </TwoColumnGrid>
     </div>
   );
 }

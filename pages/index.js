@@ -1,33 +1,19 @@
 import { useState } from "react";
+import client from "../graphql/client";
+import { GET_POKEMONS } from "../graphql/queries";
 import Head from "next/head";
 import Link from "next/link";
 import Button from "../components/global/Button";
-import { Title, TitleWrapper, TwoColumnGrid } from "../components/global/Global";
+import {
+  Title,
+  TitleWrapper,
+  TwoColumnGrid,
+} from "../components/global/Global";
 import PokemonCard from "../components/global/PokemonCard";
 import MyPokemonCarousel from "../components/pokemon-list/MyPokemonCarousel";
 
-export default function Home() {
+export default function Home({pokemonList}) {
   const [myPokemons, setMyPokemons] = useState([
-    {
-      id: 1,
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      name: "Bulbasaur",
-    },
-    {
-      id: 2,
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-      name: "Ivysaur",
-    },
-    {
-      id: 3,
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-      name: "Venusaur",
-    },
-  ]);
-  const [pokemonList, setPokemonList] = useState([
     {
       id: 1,
       image:
@@ -67,10 +53,10 @@ export default function Home() {
         <Title>Pokédex</Title>
       </TitleWrapper>
       <TwoColumnGrid>
-        {pokemonList.map((pokemon) => (
+        {pokemonList.map((pokemon, idx) => (
           <PokemonCard
-            key={pokemon.id}
-            id={pokemon.id}
+            key={idx}
+            id={idx + 1}
             image={pokemon.image}
             name={pokemon.name}
           />
@@ -78,4 +64,20 @@ export default function Home() {
       </TwoColumnGrid>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: GET_POKEMONS,
+    variables: {
+      limit: 20,
+      offset: 0,
+    },
+  });
+
+  return {
+    props: {
+      pokemonList: data.pokemons.results,
+    },
+  };
 }
