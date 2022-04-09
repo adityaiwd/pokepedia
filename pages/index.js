@@ -2,31 +2,30 @@ import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Button from "../components/global/Button";
-import { Title, TitleWrapper } from "../components/global/Global";
+import { Title, TitleWrapper, TwoColumnGrid } from "../components/global/Global";
 import PokemonCard from "../components/global/PokemonCard";
-import MyPokemonCarousel from "../components/global/MyPokemonCarousel";
-import { PokemonGrid } from "../components/global/PokemonGrid";
+import MyPokemonCarousel from "../components/pokemon-list/MyPokemonCarousel";
 
 export default function Home() {
   const [myPokemons, setMyPokemons] = useState([
-    // {
-    //   id: 1,
-    //   image:
-    //     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-    //   name: "Bulbasaur",
-    // },
-    // {
-    //   id: 2,
-    //   image:
-    //     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-    //   name: "Ivysaur",
-    // },
-    // {
-    //   id: 3,
-    //   image:
-    //     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-    //   name: "Venusaur",
-    // },
+    {
+      id: 1,
+      image:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      name: "Bulbasaur",
+    },
+    {
+      id: 2,
+      image:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+      name: "Ivysaur",
+    },
+    {
+      id: 3,
+      image:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+      name: "Venusaur",
+    },
   ]);
   const [pokemonList, setPokemonList] = useState([
     {
@@ -57,15 +56,17 @@ export default function Home() {
       </Head>
       <TitleWrapper>
         <Title>My Pokémons</Title>
-        <Link passHref href="/my-pokemons">
-          <Button>View All</Button>
-        </Link>
+        {myPokemons.length !== 0 && (
+          <Link passHref href="/my-pokemons">
+            <Button>View All</Button>
+          </Link>
+        )}
       </TitleWrapper>
       <MyPokemonCarousel myPokemons={myPokemons} />
       <TitleWrapper>
         <Title>Pokédex</Title>
       </TitleWrapper>
-      <PokemonGrid>
+      <TwoColumnGrid>
         {pokemonList.map((pokemon) => (
           <PokemonCard
             key={pokemon.id}
@@ -74,7 +75,7 @@ export default function Home() {
             name={pokemon.name}
           />
         ))}
-      </PokemonGrid>
+      </TwoColumnGrid>
     </div>
   );
 }

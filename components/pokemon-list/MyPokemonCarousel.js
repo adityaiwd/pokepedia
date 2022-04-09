@@ -1,7 +1,14 @@
 import { useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Carousel } from "react-responsive-carousel";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "../global/PokemonCard";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+const EmptyCarouselText = styled.div`
+  font-size: 1.5rem;
+  margin: 2rem auto;
+  text-align: center;
+`;
 
 const indicatorStyles = {
   background: "#edf2f4",
@@ -43,30 +50,32 @@ const ActiveIndicator = ({ label, index }) => {
 };
 
 const MyPokemonCarousel = ({ myPokemons }) => {
+  const emptyPokemons = myPokemons.length === 0;
   return (
-    <div style={{ marginBottom: "-3rem" }}>
-      <Carousel
-        autoPlay
-        infiniteLoop
-        showStatus={false}
-        showArrows={false}
-        renderIndicator={(onClickHandler, isSelected, index, label) => {
-          if (isSelected) {
-            return <ActiveIndicator label={label} index={index} />;
-          }
-          return (
-            <InactiveIndicator
-              onClickHandler={onClickHandler}
-              index={index}
-              label={label}
-            />
-          );
-        }}
-      >
-        {myPokemons.length === 0 ? (
-          <div>You have no pokemons yet</div>
-        ) : (
-          myPokemons.map((pokemon, idx) => (
+    <div>
+      {emptyPokemons? (
+        <EmptyCarouselText>You have no pokémons yet</EmptyCarouselText>
+      ) : (
+        <Carousel
+          autoPlay
+          infiniteLoop
+          showThumbs={false}
+          showStatus={false}
+          showArrows={false}
+          renderIndicator={(onClickHandler, isSelected, index, label) => {
+            if (isSelected) {
+              return <ActiveIndicator label={label} index={index} />;
+            }
+            return (
+              <InactiveIndicator
+                onClickHandler={onClickHandler}
+                index={index}
+                label={label}
+              />
+            );
+          }}
+        >
+          {myPokemons.map((pokemon, idx) => (
             <PokemonCard
               key={idx}
               id={pokemon.id}
@@ -74,9 +83,9 @@ const MyPokemonCarousel = ({ myPokemons }) => {
               name={pokemon.name}
               style={{ margin: "0 1rem 3rem" }}
             />
-          ))
-        )}
-      </Carousel>
+          ))}
+        </Carousel>
+      )}
     </div>
   );
 };

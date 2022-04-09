@@ -20,7 +20,7 @@ const PokemonCard = ({ id, image, name, ...rest }) => {
       <Wrapper {...rest}>
         <Image src={image} alt={name} width={100} height={100} />
         <h2>{name}</h2>
-        <h3>{pokemonNumber(id)}</h3>
+        <h3>{pokemonNumber(id.toString())}</h3>
       </Wrapper>
     </Link>
   );

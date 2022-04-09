@@ -17,9 +17,12 @@ const ContainedButton = styled.button`
     color: ${(props) => props.theme.colors.white};
     font-size: 1.6rem;
     font-weight: 700;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
     cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    border: none;
 `;
 
 const Button = ({ children, variant, ...rest }) => {
