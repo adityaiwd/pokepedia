@@ -66,8 +66,8 @@ const Caught = ({ onSave }) => {
           width: "100%",
         }}
       >
-        <label>Give it a nickname? (optional)</label>
-        <input type="text" onChange={(e) => setName(e.target.value)} />
+        <label style={{fontSize:'1.2rem', marginBottom:'.5rem'}}>Give it a nickname? (optional)</label>
+        <input type="text" onChange={(e) => setName(e.target.value)} style={{padding:'.5rem',fontSize:'2rem'}}/>
       </div>
       <Actions>
         <Button

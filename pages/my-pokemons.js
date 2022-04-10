@@ -32,7 +32,8 @@ export default function MyPokemons() {
       autoClose: 5000,
       hideProgressBar: false,
       progress: undefined,
-      });
+      style: {fontSize:'1.4rem'}
+    });
     setOpenModal(false);
     setReleasePokemonData({
       id: null,
