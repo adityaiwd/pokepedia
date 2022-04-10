@@ -12,14 +12,18 @@ const Wrapper = styled.div`
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   cursor: pointer;
+  pointer-events: ${(props) => (props.disabledLink ? "none" : "auto")}; ;
 `;
 
-const PokemonCard = ({ id, image, name, ...rest }) => {
+const PokemonCard = ({ id, image, name, nickname, disabledLink, ...rest }) => {
   return (
     <Link passHref href={`/pokemon/${name}`}>
-      <Wrapper {...rest}>
+      <Wrapper {...rest} disabledLink={disabledLink}>
         <Image src={image} alt={name} width={100} height={100} />
-        <h2 style={{textTransform:'uppercase'}}>{name}</h2>
+        <h2 style={{ textTransform: "uppercase" }}>
+          {name}
+          {nickname ? ` / ${nickname}` : ""}
+        </h2>
         <h3>{pokemonNumber(id.toString())}</h3>
       </Wrapper>
     </Link>

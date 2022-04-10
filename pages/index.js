@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import client from "../graphql/client";
 import { GET_POKEMONS } from "../graphql/queries";
 import Head from "next/head";
@@ -11,28 +11,16 @@ import {
 } from "../components/global/Global";
 import PokemonCard from "../components/global/PokemonCard";
 import MyPokemonCarousel from "../components/pokemon-list/MyPokemonCarousel";
+import { db } from "../utils/db";
 
-export default function Home({pokemonList}) {
-  const [myPokemons, setMyPokemons] = useState([
-    {
-      id: 1,
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      name: "Bulbasaur",
-    },
-    {
-      id: 2,
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-      name: "Ivysaur",
-    },
-    {
-      id: 3,
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-      name: "Venusaur",
-    },
-  ]);
+export default function Home({ pokemonList }) {
+  const [myPokemons, setMyPokemons] = useState([]);
+
+  useEffect(() => {
+    db.myPokemons.toArray().then((pokemons) => {
+      setMyPokemons(pokemons.slice(0, 5));
+    });
+  })
   return (
     <div>
       <Head>

@@ -14,12 +14,12 @@ const Container = styled.div`
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <div id="#root">
       <Navbar />
       <Main>
         <Container>{children}</Container>
       </Main>
-    </>
+    </div>
   );
 };
 

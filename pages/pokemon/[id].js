@@ -4,16 +4,20 @@ import client from "../../graphql/client";
 import Image from "next/image";
 import Head from "next/head";
 import styled from "@emotion/styled";
+import CatchModal from "../../components/pokemon-detail/CatchModal";
 import { Title, Subtitle } from "../../components/global/Global";
 import pokemonNumber from "../../utils/pokemon-number";
 import Button from "../../components/global/Button";
 import Types from "../../components/pokemon-detail/Types";
 import Moves from "../../components/pokemon-detail/Moves";
 import capitalizeFirstLetter from "../../utils/capitalize-first-letter";
+import { toast } from "react-toastify";
+import { db } from "../../utils/db";
+import pokemonImage from "../../utils/pokemon-image";
 
 const BannerWrapper = styled.div`
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   margin-top: -2rem;
 `;
@@ -24,8 +28,38 @@ const InfoWrapper = styled.div`
 
 export default function PokemonDetail({ pokemon }) {
   const [toggleMoves, setToggleMoves] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [pokemonCaught, setPokemonCaught] = useState(null);
   const showMoves = (toggle) => {
-    return toggle ? pokemon.moves : pokemon.moves.slice(0,15)
+    return toggle ? pokemon.moves : pokemon.moves.slice(0, 15);
+  };
+  const catchPokemon = async () => {
+    setPokemonCaught(null)
+    setOpenModal(true);
+    const chance = Math.random() < 0.5;
+
+    setTimeout(() => {
+      setPokemonCaught(chance);
+    }, 3000);
+  };
+
+  const savePokemon = async (nickname = '') => {
+    await db.myPokemons.add({
+      pokeId: pokemon.id,
+      name: pokemon.name,
+      nickname: nickname,
+    });
+    toast.success('Pokémon saved to your collection', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+    setOpenModal(false);
   }
   return (
     <div>
@@ -36,7 +70,7 @@ export default function PokemonDetail({ pokemon }) {
       </Head>
       <BannerWrapper>
         <Image
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          src={pokemonImage(pokemon.id)}
           alt="pokemon"
           height={150}
           width={150}
@@ -46,13 +80,28 @@ export default function PokemonDetail({ pokemon }) {
             {pokemonNumber(pokemon.id.toString())}
           </Subtitle>
           <Title style={{ textTransform: "uppercase" }}>{pokemon.name}</Title>
-          <Types types={pokemon.types}/>
+          <Types types={pokemon.types} />
         </InfoWrapper>
       </BannerWrapper>
-      <Moves moves={showMoves(toggleMoves)} showAll={pokemon.moves.length > 15} onClickShowAll={() => setToggleMoves(!toggleMoves)} />
-      <Button variant="contained" style={{ marginBottom: "3rem" }}>
+      <Moves
+        moves={showMoves(toggleMoves)}
+        showAll={pokemon.moves.length > 15}
+        onClickShowAll={() => setToggleMoves(!toggleMoves)}
+      />
+      <Button
+        variant="contained"
+        style={{ marginBottom: "3rem" }}
+        onClick={catchPokemon}
+      >
         Catch
       </Button>
+      <CatchModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        caught={pokemonCaught}
+        catchAgain={catchPokemon}
+        onSave={(nickname) => savePokemon(nickname)}
+      />
     </div>
   );
 }

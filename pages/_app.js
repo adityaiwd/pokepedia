@@ -1,8 +1,10 @@
 import "../styles/globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@emotion/react";
 import Layout from "../components/layout";
 import client from "../graphql/client";
+import { ToastContainer } from 'react-toastify';
 
 const theme = {
   colors: {
@@ -19,6 +21,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />
+          <ToastContainer />
         </Layout>
       </ThemeProvider>
     </ApolloProvider>

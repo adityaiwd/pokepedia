@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Carousel } from "react-responsive-carousel";
 import PokemonCard from "../global/PokemonCard";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import pokemonImage from "../../utils/pokemon-image";
 
 const EmptyCarouselText = styled.div`
   font-size: 1.5rem;
@@ -75,13 +76,15 @@ const MyPokemonCarousel = ({ myPokemons }) => {
             );
           }}
         >
-          {myPokemons.map((pokemon, idx) => (
+          {myPokemons.map((pokemon) => (
             <PokemonCard
-              key={idx}
-              id={pokemon.id}
-              image={pokemon.image}
+              key={pokemon.id}
+              id={pokemon.pokeId}
+              image={pokemonImage(pokemon.pokeId)}
               name={pokemon.name}
+              nickname={pokemon.nickname}
               style={{ margin: "0 1rem 3rem" }}
+              disabledLink
             />
           ))}
         </Carousel>

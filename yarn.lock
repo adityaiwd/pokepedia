@@ -788,6 +788,16 @@ define-properties@^1.1.3:
   dependencies:
     object-keys "^1.0.12"
 
+dexie-react-hooks@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/dexie-react-hooks/-/dexie-react-hooks-1.1.1.tgz#ff405cc89e5d899ddbac5e40d593f83f9a74106a"
+  integrity sha512-Cam5JP6PxHN564RvWEoe8cqLhosW0O4CAZ9XEVYeGHJBa6KEJlOpd9CUpV3kmU9dm2MrW97/lk7qkf1xpij7gA==
+
+dexie@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-3.2.1.tgz#ef21456d725e700c1ab7ac4307896e4fdabaf753"
+  integrity sha512-Y8oz3t2XC9hvjkP35B5I8rUkKKwM36GGRjWQCMjzIYScg7W+GHKDXobSYswkisW7CxL1/tKQtggMDsiWqDUc1g==
+
 dir-glob@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/dir-glob/-/dir-glob-3.0.1.tgz#56dbf73d992a4a93ba1584f4534063fd2e41717f"
@@ -1084,6 +1094,11 @@ esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
+
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
@@ -1528,7 +1543,7 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
-loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -1806,6 +1821,13 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+react-confetti@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/react-confetti/-/react-confetti-6.0.1.tgz#d4f57b5a021dd908a6243b8f63b6009b00818d10"
+  integrity sha512-ZpOTBrqSNhWE4rRXCZ6E6U+wGd7iYHF5MGrqwikoiBpgBq9Akdu0DcLW+FdFnLjyZYC+VfAiV2KeFgYRMyMrkA==
+  dependencies:
+    tween-functions "^1.2.0"
+
 react-dom@18.0.0:
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0.tgz#26b88534f8f1dbb80853e1eabe752f24100d8023"
@@ -1831,6 +1853,21 @@ react-is@^17.0.2:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-lifecycles-compat@^3.0.0:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal@^3.14.4:
+  version "3.14.4"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.14.4.tgz#2ca7e8e9a180955e5c9508c228b73167c1e6f6a3"
+  integrity sha512-8surmulejafYCH9wfUmFyj4UfbSJwjcgbS9gf3oOItu4Hwd6ivJyVBETI0yHRhpJKCLZMUtnhzk76wXTsNL6Qg==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.7.2"
+    react-lifecycles-compat "^3.0.0"
+    warning "^4.0.3"
+
 react-responsive-carousel@^3.2.23:
   version "3.2.23"
   resolved "https://registry.yarnpkg.com/react-responsive-carousel/-/react-responsive-carousel-3.2.23.tgz#4c0016ff54603e604bb5c1f9e7ef2d1eda133f1d"
@@ -1839,6 +1876,13 @@ react-responsive-carousel@^3.2.23:
     classnames "^2.2.5"
     prop-types "^15.5.8"
     react-easy-swipe "^0.0.21"
+
+react-toastify@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-8.2.0.tgz#ef7d56bdfdc6272ca6b228368ab564721c3a3244"
+  integrity sha512-Pg2Ju7NngAamarFvLwqrFomJ57u/Ay6i6zfLurt/qPynWkAkOthu6vxfqYpJCyNhHRhR4hu7+bySSeWWJu6PAg==
+  dependencies:
+    clsx "^1.1.1"
 
 react-transition-group@^4.4.2:
   version "4.4.2"
@@ -2108,6 +2152,11 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
+tween-functions@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
+  integrity sha1-GuOlDnxguz3vd06scHrLynO7w/8=
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -2141,6 +2190,13 @@ v8-compile-cache@^2.0.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
+
+warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
