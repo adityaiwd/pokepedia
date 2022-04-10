@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@emotion/react";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import client from "../graphql/client";
 import { ToastContainer } from 'react-toastify';
 
