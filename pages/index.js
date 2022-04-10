@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import client from "../graphql/client";
 import { GET_POKEMONS } from "../graphql/queries";
 import Head from "next/head";
