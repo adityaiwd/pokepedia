@@ -66,7 +66,7 @@ const Caught = ({ onSave }) => {
           width: "100%",
         }}
       >
-        <label style={{fontSize:'1.2rem', marginBottom:'.5rem'}}>Give it a nickname? (optional)</label>
+        <label style={{fontSize:'1.2rem', marginBottom:'1rem'}}>Give it a nickname? (optional)</label>
         <input type="text" onChange={(e) => setName(e.target.value)} style={{padding:'.5rem',fontSize:'2rem'}}/>
       </div>
       <Actions>
@@ -85,7 +85,7 @@ const Caught = ({ onSave }) => {
 
 const CatchModal = ({ open, onClose, onSave, caught, catchAgain }) => {
   return (
-    <Modal isOpen={open} style={customStyles} contentLabel="Example Modal">
+    <Modal isOpen={open} style={customStyles}>
       {caught === null ? (
         <Loading />
       ) : caught ? (

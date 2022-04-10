@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Title, TitleWrapper } from "../components/global/Global";
 import PokemonCard from "../components/global/PokemonCard";
 import { TwoColumnGrid } from "../components/global/Global";
@@ -11,6 +12,7 @@ import { toast } from "react-toastify";
 import capitalizeFirstLetter from "../utils/capitalize-first-letter";
 
 export default function MyPokemons() {
+  const router = useRouter()
   const [openModal, setOpenModal] = useState(false);
   const [releasePokemonData, setReleasePokemonData] = useState({
     id: null,
@@ -45,8 +47,11 @@ export default function MyPokemons() {
   useEffect(() => {
     db.myPokemons.toArray().then((pokemons) => {
       setPokemons(pokemons);
+      if(pokemons.length === 0) {
+        router.replace('/')
+      }
     });
-  }, [pokemons]);
+  }, [pokemons,router]);
 
   return (
     <div>
