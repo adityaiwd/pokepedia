@@ -29,7 +29,6 @@ const InfoWrapper = styled.div`
 export default function PokemonDetail({ pokemon }) {
   const [toggleMoves, setToggleMoves] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
   const [pokemonCaught, setPokemonCaught] = useState(null);
   const showMoves = (toggle) => {
     return toggle ? pokemon.moves : pokemon.moves.slice(0, 15);
@@ -54,9 +53,6 @@ export default function PokemonDetail({ pokemon }) {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
       progress: undefined,
       });
     setOpenModal(false);

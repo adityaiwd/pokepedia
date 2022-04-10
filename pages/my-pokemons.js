@@ -6,14 +6,46 @@ import { TwoColumnGrid } from "../components/global/Global";
 import { db } from "../utils/db";
 import Loader from "../components/global/Loader";
 import pokemonImage from "../utils/pokemon-image";
+import ReleaseModal from "../components/my-pokemons-list/ReleaseModal";
+import { toast } from "react-toastify";
+import capitalizeFirstLetter from "../utils/capitalize-first-letter";
 
 export default function MyPokemons() {
+  const [openModal, setOpenModal] = useState(false);
+  const [releasePokemonData, setReleasePokemonData] = useState({
+    id: null,
+    name: "",
+    nickname: "",
+  });
   const [pokemons, setPokemons] = useState([]);
+
+  const openReleaseModal = (pokemon) => {
+    setReleasePokemonData(pokemon);
+    setOpenModal(true);
+  };
+
+  const releasePokemon = async () => {
+    await db.myPokemons.delete(releasePokemonData.id);
+    const pokemonName = capitalizeFirstLetter(releasePokemonData.nickname ? releasePokemonData.nickname : releasePokemonData.name)
+    toast.success(`Successfuly release ${pokemonName}`, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      progress: undefined,
+      });
+    setOpenModal(false);
+    setReleasePokemonData({
+      id: null,
+      name: "",
+      nickname: "",
+    });
+  };
+
   useEffect(() => {
     db.myPokemons.toArray().then((pokemons) => {
       setPokemons(pokemons);
     });
-  },[])
+  }, [pokemons]);
 
   return (
     <div>
@@ -34,6 +66,7 @@ export default function MyPokemons() {
               image={pokemonImage(pokemon.pokeId)}
               name={pokemon.name}
               nickname={pokemon.nickname}
+              onClick={() => openReleaseModal(pokemon)}
               disabledLink
             />
           ))}
@@ -41,6 +74,12 @@ export default function MyPokemons() {
       ) : (
         <Loader />
       )}
+      <ReleaseModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        pokemon={releasePokemonData}
+        release={releasePokemon}
+      />
     </div>
   );
 }
