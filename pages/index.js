@@ -70,7 +70,7 @@ export default function Home({ pokemonList }) {
             <Loader />
           </div>
         }
-        hasMore
+        hasMore={pokemons.length < 981}
       >
         <TwoColumnGrid>
           {pokemons.map((pokemon, idx) => (
