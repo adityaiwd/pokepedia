@@ -14,11 +14,13 @@ import PokemonCard from "../components/global/PokemonCard";
 import MyPokemonCarousel from "../components/pokemon-list/MyPokemonCarousel";
 import Loader from "../components/global/Loader";
 import { db } from "../utils/db";
+import { usePoke } from "../provider/context";
 
 export default function Home({ pokemonList }) {
-  const [pokemons, setPokemons] = useState(pokemonList);
+  const pokepedia = usePoke();
+  const { pokemons, myPokemons } = pokepedia.state
   const [offset, setOffset] = useState(20);
-  const [myPokemons, setMyPokemons] = useState([]);
+  
   const fetchMorePokemons = async () => {
     const { data } = await client.query({
       query: GET_POKEMONS,
@@ -28,14 +30,23 @@ export default function Home({ pokemonList }) {
       },
     });
     setOffset(offset + 20);
-    setPokemons([...pokemons, ...data.pokemons.results]);
+    pokepedia.dispatch({
+      type: "FETCH_MORE_POKEMONS",
+      payload: data.pokemons.results,
+    });
   };
 
   useEffect(() => {
+    pokepedia.dispatch({ type: "FETCH_MORE_POKEMONS", payload: pokemonList });
     db.myPokemons.toArray().then((pokemons) => {
-      setMyPokemons(pokemons.slice(0, 5));
+      pokepedia.dispatch({
+        type: "FETCH_MYPOKEMONS",
+        payload: pokemons.slice(0, 5),
+      });
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div>
       <Head>

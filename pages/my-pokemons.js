@@ -10,8 +10,11 @@ import pokemonImage from "../utils/pokemon-image";
 import ReleaseModal from "../components/my-pokemons-list/ReleaseModal";
 import { toast } from "react-toastify";
 import capitalizeFirstLetter from "../utils/capitalize-first-letter";
+import { usePoke } from "../provider/context";
 
 export default function MyPokemons() {
+  const pokepedia = usePoke()
+  const { myPokemons } = pokepedia.state
   const router = useRouter()
   const [openModal, setOpenModal] = useState(false);
   const [releasePokemonData, setReleasePokemonData] = useState({
@@ -19,7 +22,6 @@ export default function MyPokemons() {
     name: "",
     nickname: "",
   });
-  const [pokemons, setPokemons] = useState([]);
 
   const openReleaseModal = (pokemon) => {
     setReleasePokemonData(pokemon);
@@ -46,12 +48,16 @@ export default function MyPokemons() {
 
   useEffect(() => {
     db.myPokemons.toArray().then((pokemons) => {
-      setPokemons(pokemons);
+      pokepedia.dispatch({
+        type: "FETCH_MYPOKEMONS",
+        payload: pokemons,
+      });
       if(pokemons.length === 0) {
         router.replace('/')
       }
     });
-  }, [pokemons,router]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [myPokemons,router]);
 
   return (
     <div>
@@ -63,9 +69,9 @@ export default function MyPokemons() {
       <TitleWrapper>
         <Title>My Pokémons</Title>
       </TitleWrapper>
-      {pokemons ? (
+      {myPokemons ? (
         <TwoColumnGrid>
-          {pokemons.map((pokemon) => (
+          {myPokemons.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
               id={pokemon.pokeId}

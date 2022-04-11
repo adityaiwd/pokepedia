@@ -3,15 +3,14 @@ import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@emotion/react";
-import Layout from "../components/Layout";
-import client from "../graphql/client";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
+
+import { PokepediaProvider } from "../provider/context";
+import client from "../graphql/client";
+import Layout from "../components/Layout";
 import { theme } from "../components/global/Global";
-
 import Loader from "../components/global/Loader";
-
-
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -30,23 +29,25 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <Layout>
-          {pageLoading ? (
-            <Loader
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "2rem",
-              }}
-            />
-          ) : (
-            <Component {...pageProps} />
-          )}
-          <ToastContainer />
-        </Layout>
-      </ThemeProvider>
+      <PokepediaProvider>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            {pageLoading ? (
+              <Loader
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "2rem",
+                }}
+              />
+            ) : (
+              <Component {...pageProps} />
+            )}
+            <ToastContainer />
+          </Layout>
+        </ThemeProvider>
+      </PokepediaProvider>
     </ApolloProvider>
   );
 }

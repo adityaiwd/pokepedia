@@ -5,10 +5,10 @@ const PokepediaContext = React.createContext()
 function pokepediaReducer(state, action) {
     switch (action.type) {
       case 'FETCH_MORE_POKEMONS': {
-        return {pokemons: [...state.pokemons, ...action.payload]}
+        return {...state, pokemons: [...state.pokemons, ...action.payload]}
       }
-      case 'decrement': {
-        return {count: state.count - 1}
+      case 'FETCH_MYPOKEMONS': {
+        return {...state, myPokemons: [...action.payload]}
       }
       default: {
         throw new Error(`Unhandled action type: ${action.type}`)
