@@ -18,6 +18,7 @@ const ViewAllButton = styled.div`
   font-size: 0.8rem;
   font-weight: bold;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 const Moves = ({ moves, showAll, onClickShowAll }) => {

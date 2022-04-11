@@ -61,16 +61,14 @@ export default function Home({ pokemonList }) {
         dataLength={pokemons.length}
         next={fetchMorePokemons}
         loader={
-          <div
+          <Loader
             style={{
               margin: "3rem 0",
               width: "100%",
               display: "flex",
               justifyContent: "center",
             }}
-          >
-            <Loader />
-          </div>
+          />
         }
         hasMore={pokemons.length < 981}
       >

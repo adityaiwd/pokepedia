@@ -35,22 +35,18 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeError", handleComplete);
   }, [router]);
   return (
-
     <ApolloProvider client={client}>
-      
       <ThemeProvider theme={theme}>
         <Layout>
           {pageLoading ? (
-            <div
+            <Loader
               style={{
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
-                marginTop: '2rem'
+                marginTop: "2rem",
               }}
-            >
-              <Loader />
-            </div>
+            />
           ) : (
             <Component {...pageProps} />
           )}
