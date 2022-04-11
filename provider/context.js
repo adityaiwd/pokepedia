@@ -4,9 +4,6 @@ const PokepediaContext = React.createContext()
 
 function pokepediaReducer(state, action) {
     switch (action.type) {
-      case 'FETCH_MORE_POKEMONS': {
-        return {...state, pokemons: [...state.pokemons, ...action.payload]}
-      }
       case 'FETCH_MYPOKEMONS': {
         return {...state, myPokemons: [...action.payload]}
       }
@@ -18,8 +15,6 @@ function pokepediaReducer(state, action) {
   
   function PokepediaProvider({children}) {
     const [state, dispatch] = React.useReducer(pokepediaReducer, {pokemons: [], myPokemons: []})
-    // NOTE: you *might* need to memoize this value
-    // Learn more in http://kcd.im/optimize-context
     const value = {state, dispatch}
     return <PokepediaContext.Provider value={value}>{children}</PokepediaContext.Provider>
   }

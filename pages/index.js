@@ -17,10 +17,10 @@ import { db } from "../utils/db";
 import { usePoke } from "../provider/context";
 
 export default function Home({ pokemonList }) {
-  const pokepedia = usePoke();
-  const { pokemons, myPokemons } = pokepedia.state
+  const pokepedia = usePoke()
+  const { myPokemons } = pokepedia.state
+  const [pokemons, setPokemons] = useState(pokemonList);
   const [offset, setOffset] = useState(20);
-  
   const fetchMorePokemons = async () => {
     const { data } = await client.query({
       query: GET_POKEMONS,
@@ -30,23 +30,16 @@ export default function Home({ pokemonList }) {
       },
     });
     setOffset(offset + 20);
-    pokepedia.dispatch({
-      type: "FETCH_MORE_POKEMONS",
-      payload: data.pokemons.results,
-    });
+    setPokemons([...pokemons, ...data.pokemons.results]);
   };
-
   useEffect(() => {
-    pokepedia.dispatch({ type: "FETCH_MORE_POKEMONS", payload: pokemonList });
     db.myPokemons.toArray().then((pokemons) => {
       pokepedia.dispatch({
         type: "FETCH_MYPOKEMONS",
         payload: pokemons.slice(0, 5),
       });
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <div>
       <Head>
@@ -97,7 +90,6 @@ export default function Home({ pokemonList }) {
     </div>
   );
 }
-
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: GET_POKEMONS,
@@ -106,7 +98,6 @@ export async function getServerSideProps() {
       offset: 0,
     },
   });
-
   return {
     props: {
       pokemonList: data.pokemons.results,

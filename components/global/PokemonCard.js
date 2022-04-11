@@ -45,7 +45,7 @@ const PokemonCard = ({ id, image, name, nickname, disabledLink, ...rest }) => {
     );
   } else {
     return (
-      <Link passHref href={`/pokemon/${id}`} data-testid="link-to-pokemon">
+      <Link passHref href={`/pokemon/${name}`} data-testid="link-to-pokemon">
         <CardContent
           id={id}
           image={image}
