@@ -49,28 +49,36 @@ export default function PokemonDetail({ pokemon }) {
       .equalsIgnoreCase(pokemon.name)
       .and((item) => item.nickname === nickname)
       .toArray();
-    if (exist.length === 0 || nickname === "") {
+    if (nickname.length > 15) {
+      toast.error("Nickname cannot be more than 15 characters", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        progress: undefined,
+        style: { fontSize: "1.4rem" },
+      });
+    } else if (exist.length === 0 || nickname === "") {
       await db.myPokemons.add({
         pokeId: pokemon.id,
         name: pokemon.name,
         nickname: nickname,
       });
-      toast.success('Pokémon saved to your collection', {
+      toast.success("Pokémon saved to your collection", {
         position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         progress: undefined,
-        style: {fontSize:'1.4rem'}
-        });
+        style: { fontSize: "1.4rem" },
+      });
       setOpenModal(false);
     } else {
-      toast.error('That nickname is already exist for this pokémon', {
+      toast.error("That nickname is already exist for this pokémon", {
         position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         progress: undefined,
-        style: {fontSize:'1.4rem'}
-        });
+        style: { fontSize: "1.4rem" },
+      });
     }
   };
   return (
