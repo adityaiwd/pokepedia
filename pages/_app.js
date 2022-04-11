@@ -7,17 +7,11 @@ import Layout from "../components/Layout";
 import client from "../graphql/client";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
+import { theme } from "../components/global/Global";
 
 import Loader from "../components/global/Loader";
 
-const theme = {
-  colors: {
-    primary: "#ef233c",
-    text: "#2b2d42",
-    white: "#fff",
-    black: "#000",
-  },
-};
+
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

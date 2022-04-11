@@ -27,9 +27,9 @@ const ContainedButton = styled.button`
 
 const Button = ({ children, variant, ...rest }) => {
   if (variant === "contained") {
-    return <ContainedButton {...rest}>{children}</ContainedButton>;
+    return <ContainedButton {...rest} data-testid="contained-button">{children}</ContainedButton>;
   } else {
-    return <TextButton {...rest}>{children}</TextButton>;
+    return <TextButton {...rest} data-testid="text-button">{children}</TextButton>;
   }
 };
 
