@@ -36,9 +36,11 @@ const NavLogoText = styled.div`
   transition: all 0.2s;
 `;
 
+
+
 const Navbar = () => {
   return (
-    <NavWrapper>
+    <NavWrapper data-testid="navbar-wrapper">
       <NavInnerWrapper>
         <Link passHref href="/">
           <NavLogo>

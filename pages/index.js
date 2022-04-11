@@ -47,7 +47,9 @@ export default function Home({ pokemonList }) {
         <Title>My Pokémons</Title>
         {myPokemons.length !== 0 && (
           <Link passHref href="/my-pokemons">
-            <Button>View All</Button>
+            <a>
+              <Button>View All</Button>
+            </a>
           </Link>
         )}
       </TitleWrapper>

@@ -1,10 +1,9 @@
 import Image from "next/image";
 import pokeBallImage from "../../public/pokeball-image.png";
-import { jsx, css, keyframes, styled } from "@emotion/react";
 
 const Loader = ({...rest}) => {
   return (
-    <div {...rest}>
+    <div data-testid="loader" {...rest} >
       <Image
         src={pokeBallImage}
         style={{
