@@ -39,6 +39,7 @@ export default function Home({ pokemonList }) {
         payload: pokemons.slice(0, 5),
       });
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>

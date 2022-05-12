@@ -40,7 +40,7 @@ export default function PokemonDetail({ pokemon }) {
 
     setTimeout(() => {
       setPokemonCaught(chance);
-    }, 3000);
+    }, 1800);
   };
 
   const savePokemon = async (nickname = "") => {

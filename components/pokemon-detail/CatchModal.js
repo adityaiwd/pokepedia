@@ -6,8 +6,8 @@ import styled from "@emotion/styled";
 
 const Actions = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 `;
 
@@ -23,6 +23,7 @@ const customStyles = {
     flexDirection: "column",
     alignItems: "center",
     width: "80%",
+    maxWidth: "600px",
   },
 };
 
@@ -66,19 +67,24 @@ const Caught = ({ onSave }) => {
           width: "100%",
         }}
       >
-        <label style={{fontSize:'1.2rem', marginBottom:'1rem'}}>Give it a nickname? (optional)</label>
-        <input type="text" onChange={(e) => setName(e.target.value)} style={{padding:'.5rem',fontSize:'2rem'}}/>
+        <label style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+          Give it a nickname? (optional)
+        </label>
+        <Actions>
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            style={{ padding: ".5rem", fontSize: "2rem", width: "100%" }}
+          />
+          <Button
+            onClick={() => onSave(name)}
+            variant="contained"
+            style={{ marginLeft: "1rem", width: "20%" }}
+          >
+            Save
+          </Button>
+        </Actions>
       </div>
-      <Actions>
-        <Button
-          onClick={() => onSave(name)}
-          variant="contained"
-          style={{ marginRight: "1rem", width: "auto" }}
-        >
-          Save
-        </Button>
-        <Button onClick={() => onSave()}>Close</Button>
-      </Actions>
     </>
   );
 };
