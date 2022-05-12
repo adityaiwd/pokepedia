@@ -14,7 +14,16 @@ const Container = styled.div`
 
 const Layout = ({ children }) => {
   return (
-    <div id="#root">
+    <div
+      id="#root"
+      style={{
+        maxWidth: "600px",
+        margin:'0 auto',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Navbar />
       <Main>
         <Container>{children}</Container>
