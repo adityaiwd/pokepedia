@@ -6,8 +6,7 @@ import pokeBallImage from "../../public/pokeball-image.png";
 const NavWrapper = styled.div`
   position: fixed;
   min-width: 100vw;
-  background-color: #fff;
-  opacity: 0.7;
+  background: rgba(255, 255, 255, 0.7);
   width: 100%;
   box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
   padding: 1.8rem 0;
@@ -35,8 +34,6 @@ const NavLogoText = styled.div`
   cursor: pointer;
   transition: all 0.2s;
 `;
-
-
 
 const Navbar = () => {
   return (

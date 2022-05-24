@@ -14,6 +14,7 @@ const customStyles = {
     flexDirection: "column",
     alignItems: "center",
     width: "80%",
+    maxWidth: "600px",
   },
 };
 
